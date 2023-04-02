@@ -1,0 +1,16 @@
+.navbar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 10fr;
+    justify-items: end; 
+    
+  }
+
+  h3 {
+    margin-right: 40px;
+    color: #fa8231
+  }
+
+
+  a:link {
+    text-decoration: none;
+  }

@@ -1,0 +1,61 @@
+.list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1%;
+    margin-left: 8%;
+  }
+
+
+
+  .movie {
+    height: 400px;
+    width: 100%;
+    border-radius: 15px;
+    position : relative;
+  }
+  
+  img {
+    width: 60%;
+    height: 80%;
+    border-radius: 15px;
+  }
+
+  .section-title {
+    color: #fa8231;
+    font-size: 150%;
+    margin-left: 5%;
+  }
+
+  input {
+    padding: 8px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
+    margin-top: 50px;
+    margin-left: 100px;
+    border-color: #fa8231;
+  }
+  
+  
+ 
+  span {
+    position : absolute;
+    right: 0; 
+    margin: 110px;
+    color: #fa8231;
+    font-size: 150%;
+  }
+
+
+
+  .rent-movie{
+    color: white;
+    position: absolute;
+    font-size: 1.8rem;
+    margin: 10px 0 0 10px;
+    border-radius: 25px;
+    left : 0;
+    background-color: #fa8231;
+  }

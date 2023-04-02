@@ -1,24 +1,66 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes , Link} from 'react-router-dom';
+import { MOVIES , USERS} from './Constants';
+import Navbar from './Components/Header/Navbar';
+import Landing from './Components/Landing/Landing';
+import Catalog from './Components/Catalog/Catalog';
+import MovieDetails from './Components/MovieDetails/MovieDetails';
 
 function App() {
+
+  const [Movies , setMovies] = useState(MOVIES);
+  const [Users , setUsers] = useState(USERS);
+
+  const addMovie = (userId , movieId) =>{
+    if (userId != "undefined") {
+      let users = [...Users]
+      let user = users.find(user => user.id == userId)
+      let movies = [...Movies] 
+      let movie = movies.find(m => m.id == movieId)
+      
+      if (!user.rentedMovies.find(m => m.id == movieId)) {
+        user.rentedMovies.push(movie);
+        user.budget -= 3
+        movie.isRented = true;
+        setUsers(users);
+        setMovies(movies);
+      }
+    }
+    else {
+      return
+    }
+  }
+
+  const removeMovie =(userId , movieId) =>{
+    let users = [...Users]
+    let user = users.find(user => user.id == userId)
+    let movies = [...Movies] 
+    let movie = movies.find(m => m.id == movieId)
+
+    user.rentedMovies = user.rentedMovies.filter((m) => m.id !== movieId);
+    user.budget += 3;
+    movie.isRented = false;
+  
+    setUsers(users);
+    setMovies(movies);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      
+        <div className="App">
+          <Navbar />
+        </div>
+
+      <Routes>
+      <Route path="/" element={<Landing users={Users} />} />
+      <Route path="/:userId?/catalog" element={<Catalog movies={Movies} users={Users} addMovie={addMovie} removeMovie={removeMovie} />}  />
+      <Route path="/:userId?/catalog/:movieId" element={<MovieDetails movies={Movies} />} />
+      </Routes>
+
+
+    </Router>
   );
 }
 
