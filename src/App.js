@@ -14,19 +14,26 @@ function App() {
 
   const addMovie = (userId , movieId) =>{
     if (userId != "undefined") {
+      
       let users = [...Users]
       let user = users.find(user => user.id == userId)
       let movies = [...Movies] 
       let movie = movies.find(m => m.id == movieId)
-      
+      if(user.budget >= 3) {
       if (!user.rentedMovies.find(m => m.id == movieId)) {
         user.rentedMovies.push(movie);
+        
         user.budget -= 3
         movie.isRented = true;
         setUsers(users);
         setMovies(movies);
       }
+      }
+      else{
+        alert("you Dont have a money ")
+      }
     }
+
     else {
       return
     }

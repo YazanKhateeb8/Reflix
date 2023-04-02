@@ -50,7 +50,7 @@ export const USERS = [
   { 
     id: "1", 
     name: "Yazan", 
-    budget: 100, 
+    budget: 6, 
     rentedMovies: [] 
   },
   {
